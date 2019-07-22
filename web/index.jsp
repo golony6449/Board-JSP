@@ -11,6 +11,9 @@
     <title>Index</title>
 </head>
 <body>
-
+<h2>Index of Blog</h2>
+<p><a href="">로그아웃</a></p>
+<p><a href="post/list.jsp">글 목록</a></p>
+<p><a href="post/post_form.jsp">글 작성</a></p>
 </body>
 </html>
