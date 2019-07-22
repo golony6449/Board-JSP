@@ -1,0 +1,21 @@
+version: "3"
+
+services: 
+  db:
+    image: mariadb
+    environment: 
+      MYSQL_ROOT_PASSWORD: jspminiproject
+    ports: 
+      - 3306:3306
+    # volumes: 
+    #   - d:\docker\db:/var/lib/mysql
+    # command: chmod 777 -R /var/lib/mysql
+  
+  admin:
+    image: phpmyadmin/phpmyadmin
+    ports: 
+      - 8080:80
+    # links:
+    #   - db
+    depends_on: 
+      - db
