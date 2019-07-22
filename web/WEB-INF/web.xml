@@ -49,4 +49,16 @@
         <extension>wsdl</extension>
         <mime-type>text/xml</mime-type>
     </mime-mapping>
+
+<!--    &lt;!&ndash; 프런트 컨트롤러 서블릿 등록 &ndash;&gt;-->
+<!--    <servlet>-->
+<!--        <servlet-name>front</servlet-name>-->
+<!--        <servlet-class>dev.golony.blog.FrontController</servlet-class>-->
+<!--    </servlet>-->
+
+<!--    &lt;!&ndash; URL패턴 맵핑&ndash;&gt;-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>front</servlet-name>-->
+<!--        <url-pattern>*.do</url-pattern>-->
+<!--    </servlet-mapping>-->
 </web-app>
