@@ -15,7 +15,7 @@
     <p>ID <input type="text"> </p>
     <p>PW <input type="password"></p>
     <input type="submit" value="로그인">
-    <button>Join</button>
 </form>
+<a href="/user/join.jsp">회원가입</a>
 </body>
 </html>

@@ -8,9 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>회원가입</title>
 </head>
 <body>
-
+<form action="join.do" method="post">
+    <input type="text" name="id">
+    <input type="password" name="pw">
+    <input type="text" name="name">
+    <input type="submit" value="회원가입">
+</form>
 </body>
 </html>

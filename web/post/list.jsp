@@ -8,10 +8,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>글 목록</title>
+    <style>
+        table {
+            width:50%;
+            border: 2px solid black;
+        }
+
+        td, th {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <h2>Post List</h2>
+    <p><a href="/index.jsp">Home</a> </p>
+    <p><a href="/post/post_form.jsp">글 작성</a></p>
 
     <table>
         <tr>
@@ -22,13 +34,13 @@
         </tr>
 
         <%
-            for (){
+            for (int i=0; i<10; i++){
         %>
             <tr>
-                <td></td>
-                <td><a href=""></a></td>
-                <td></td>
-                <td></td>
+                <td><%="글번호"%></td>
+                <td><a href="/post/content.jsp"><%="내용"%></a></td>
+                <td><%="작성자"%></td>
+                <td><%="작성일"%></td>
             </tr>
         <%
             }
