@@ -2,12 +2,13 @@ package dev.golony.blog;
 
 public class PostDto {
     private int bId;
+    private String name;
     private String title;
     private String content;
     private String date;
     private int hit;
 
-    public PostDto(int bId, String title, String content, String date, int hit) {
+    public PostDto(int bId, String name, String title, String content, String date, int hit) {
         this.bId = bId;
         this.title = title;
         this.content = content;
@@ -18,6 +19,8 @@ public class PostDto {
     public int getbId() {
         return bId;
     }
+
+    public String getName() { return name; }
 
     public String getTitle() {
         return title;
@@ -38,6 +41,8 @@ public class PostDto {
     public void setbId(int bId) {
         this.bId = bId;
     }
+
+    public void setName(String name) { this.name = name; }
 
     public void setTitle(String title) {
         this.title = title;
