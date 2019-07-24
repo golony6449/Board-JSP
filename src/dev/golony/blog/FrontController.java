@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("*.do")
@@ -44,11 +45,38 @@ public class FrontController extends HttpServlet {
 
         if (command.equals("/index.do")){
             System.out.println("index.do Matched");
-            template_path = "template/common/index.jsp";
+
+            HttpSession session = request.getSession(true);
+            System.out.println((String)session.getAttribute("logged_in"));
+
+            if (session.getAttribute("logged_in") == null){
+                response.sendRedirect("/login.do");
+                return;
+            }
+            else{
+                template_path = "template/common/index.jsp";
+            }
         }
         else if (command.equals("/login.do")){
             System.out.println("login.do Matched");
             template_path = "template/common/login.jsp";
+        }
+        else if (command.equals("/trylogin.do")){
+            System.out.println("login procedure init");
+            boolean isSuccess = false;
+
+            if (isSuccess == true){
+                template_path = "template/common/index.jsp";
+            }
+            else {
+                request.setAttribute("msg", "올바르지 않은 계정정보입니다.");
+                template_path = "template/common/error.jsp";
+            }
+        }
+        else if (command.equals("/post/list.do")){
+            System.out.println("list.do Matched");
+            template_path = "template/post/list.jsp";
+
         }
 
         System.out.println("-------------------------------------------");
