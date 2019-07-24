@@ -22,8 +22,8 @@
 </head>
 <body>
     <h2>Post List</h2>
-    <p><a href="/index.jsp">Home</a> </p>
-    <p><a href="/post/post_form.jsp">글 작성</a></p>
+    <p><a href="/template/common/index.jsp">Home</a> </p>
+    <p><a href="/template/post/post_form.jsp">글 작성</a></p>
 
     <table>
         <tr>
@@ -38,7 +38,7 @@
         %>
             <tr>
                 <td><%="글번호"%></td>
-                <td><a href="/post/content.jsp"><%="내용"%></a></td>
+                <td><a href="/template/post/content.jsp"><%="내용"%></a></td>
                 <td><%="작성자"%></td>
                 <td><%="작성일"%></td>
             </tr>

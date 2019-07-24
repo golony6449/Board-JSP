@@ -17,6 +17,6 @@
         <input type="submit" value="저장">
         <%--첨부파일--%>
     </form>
-    <a href="/post/list.jsp">돌아가기</a>
+    <a href="/template/post/list.jsp">돌아가기</a>
 </body>
 </html>

@@ -18,7 +18,7 @@
     <hr>
     <p><%="내용"%></p>
     <hr>
-    <a href="/post/list.jsp">목록</a>
-    <a href="/post/post_form.jsp">수정</a>
+    <a href="/template/post/list.jsp">목록</a>
+    <a href="/template/post/post_form.jsp">수정</a>
 </body>
 </html>
