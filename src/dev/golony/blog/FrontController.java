@@ -63,7 +63,10 @@ public class FrontController extends HttpServlet {
         }
         else if (command.equals("/trylogin.do")){
             System.out.println("login procedure init");
-            boolean isSuccess = false;
+            MemberService service = MemberService.getInstance();
+
+            boolean isSuccess = service.login(request.getParameter("id"),
+                    request.getParameter("pw"));
 
             if (isSuccess == true){
                 template_path = "template/common/index.jsp";
