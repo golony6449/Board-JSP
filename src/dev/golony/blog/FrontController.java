@@ -47,7 +47,7 @@ public class FrontController extends HttpServlet {
             System.out.println("index.do Matched");
 
             HttpSession session = request.getSession(true);
-            System.out.println((String)session.getAttribute("logged_in"));
+            System.out.println(String.valueOf(session.getAttribute("logged_in")));
 
             if (session.getAttribute("logged_in") == null){
                 response.sendRedirect("/login.do");
@@ -69,13 +69,24 @@ public class FrontController extends HttpServlet {
                     request.getParameter("pw"));
 
             if (isSuccess == true){
-                template_path = "template/common/index.jsp";
+                HttpSession sess = request.getSession();
+                sess.setAttribute("logged_in", true);
+                response.sendRedirect("/index.do");
+                return;
             }
             else {
                 request.setAttribute("msg", "올바르지 않은 계정정보입니다.");
                 template_path = "template/common/error.jsp";
             }
         }
+        else if (command.equals("/logout.do")){
+            System.out.println("Logout Event");
+            HttpSession sess = request.getSession();
+            sess.removeAttribute("logged_in");
+            response.sendRedirect("/login.do");
+            return;
+        }
+
         else if (command.equals("/post/list.do")){
             System.out.println("list.do Matched");
             template_path = "template/post/list.jsp";

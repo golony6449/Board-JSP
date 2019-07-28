@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String msg = (String)request.getAttribute("msg");
+%>
 <html>
 <head>
     <title>오류발생</title>

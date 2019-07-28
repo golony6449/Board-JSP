@@ -29,7 +29,6 @@ public class MemberService {
                 System.out.println("매칭된 ID, PW 존재");
                 return true;
             }
-
         }
 
         System.out.printf("해당하는 ID: %s \t PW: %s 없음\n", id, pw);

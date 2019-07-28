@@ -14,7 +14,7 @@ public class MemberDao {
     public MemberDao(){
         try {
             Context context = new InitialContext();
-            dataSource = (DataSource)context.lookup("java:comp/env/mariadb");
+            dataSource = (DataSource)context.lookup("java:comp/env/MariaDB");
         } catch (NamingException e) {
             e.printStackTrace();
         }
@@ -45,10 +45,10 @@ public class MemberDao {
     public ArrayList<MemberDto> selectAll(){
         ArrayList<MemberDto> result = new ArrayList<>();
 
-        String query = "SELECT * FROM ";
+        String query = "SELECT * FROM member";
 
         try {
-            // TODO: 커넥션 풀이 올바르게 동작 하지 않음
+            // 커넥션 풀 사용을 위해서는 context.xml, web.xml 모두에 관련 코드 작성이 필요함
             Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
