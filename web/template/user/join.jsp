@@ -11,10 +11,10 @@
     <title>회원가입</title>
 </head>
 <body>
-<form action="join.do" method="post">
-    <input type="text" name="id">
-    <input type="password" name="pw">
-    <input type="text" name="name">
+<form action="/user/register.do" method="post">
+    <p>ID: <input type="text" name="id"></p>
+    <p>PW: <input type="password" name="pw"></p>
+    <p>Name: <input type="text" name="name"></p>
     <input type="submit" value="회원가입">
 </form>
 </body>

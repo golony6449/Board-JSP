@@ -16,6 +16,6 @@
     <p>PW <input type="password" name="pw"></p>
     <input type="submit" value="로그인">
 </form>
-<a href="/user/join.jsp">회원가입</a>
+<a href="user/join.do">회원가입</a>
 </body>
 </html>

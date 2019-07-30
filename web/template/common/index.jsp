@@ -13,7 +13,7 @@
 <body>
 <h2>Index of Blog</h2>
 <p><a href="logout.do">로그아웃</a></p>
-<p><a href="post/list.jsp">글 목록</a></p>
-<p><a href="post/post_form.jsp">글 작성</a></p>
+<p><a href="post/list.do">글 목록</a></p>
+<p><a href="/post/write.do">글 작성</a></p>
 </body>
 </html>
