@@ -86,10 +86,38 @@ public class FrontController extends HttpServlet {
             response.sendRedirect("/login.do");
             return;
         }
+        else if (command.equals("/user/join.do")){
+            System.out.println("Join Page Requested");
+            // '/'를 빼면 상대경로로서, .do가 붙은 마지막 부분만 변경되어 jsp 파일을 찾지 못함
+            template_path = "/template/user/join.jsp";
+        }
+        else if (command.equals("/user/register.do")){
+            MemberService service = MemberService.getInstance();
+            System.out.printf("회원가입 시도: Name: %s \t ID: %s \t PW: %s\n",
+                    (String)request.getParameter("name"),
+                    (String)request.getParameter("id"),
+                    (String)request.getParameter("pw"));
+
+            boolean isSuccess = service.join((String)request.getParameter("name"),
+                    (String)request.getParameter("id"),
+                    (String)request.getParameter("pw"));
+
+            if (isSuccess){
+                response.sendRedirect("/login.do");
+                return;
+            }
+            else{
+                template_path = "common/error.jsp";
+                request.setAttribute("msg", "회원가입에 실패했습니다. 다시시도해주세요.");
+            }
+        }
 
         else if (command.equals("/post/list.do")){
             System.out.println("list.do Matched");
             template_path = "template/post/list.jsp";
+        }
+
+        else if (command.equals("/post/write.do")){
 
         }
 

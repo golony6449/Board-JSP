@@ -35,8 +35,15 @@ public class MemberService {
         return false;
     }
 
-    public boolean join(){
+    public boolean join(String name, String id, String pw){
+        MemberDto newMem = new MemberDto(name, id, pw);
+        MemberDao access = new MemberDao();
+        boolean isSuccess = access.insert(newMem);
 
-        return true;
+        return isSuccess;
+//        if (isSuccess)
+//            return true;
+//        else
+//            return false;
     }
 }

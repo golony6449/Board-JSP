@@ -65,7 +65,22 @@ public class MemberDao {
         return result;
     }
 
-    public boolean insert(MemberDao data){
+    public boolean insert(MemberDto data){
+        String query = "INSERT INTO member (name, id, pw) VALUES (?, ?, ?)";
+
+        try{
+            Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, data.getName());
+            stmt.setString(2, data.getId());
+            stmt.setString(3, data.getPw());
+
+            stmt.executeUpdate();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
 
         return true;
     }
