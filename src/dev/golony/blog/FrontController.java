@@ -71,6 +71,7 @@ public class FrontController extends HttpServlet {
             if (isSuccess == true){
                 HttpSession sess = request.getSession();
                 sess.setAttribute("logged_in", true);
+                sess.setAttribute("id", request.getParameter("id"));
                 response.sendRedirect("/index.do");
                 return;
             }
@@ -83,6 +84,7 @@ public class FrontController extends HttpServlet {
             System.out.println("Logout Event");
             HttpSession sess = request.getSession();
             sess.removeAttribute("logged_in");
+            sess.removeAttribute("id");
             response.sendRedirect("/login.do");
             return;
         }
@@ -103,7 +105,10 @@ public class FrontController extends HttpServlet {
                     (String)request.getParameter("pw"));
 
             if (isSuccess){
-                response.sendRedirect("/login.do");
+                HttpSession sess = request.getSession();
+                sess.setAttribute("logged_in", true);
+                sess.setAttribute("id", (String) request.getParameter("id"));
+                response.sendRedirect("/index.do");
                 return;
             }
             else{
