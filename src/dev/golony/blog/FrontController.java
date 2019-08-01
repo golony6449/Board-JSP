@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -42,6 +45,17 @@ public class FrontController extends HttpServlet {
         String template_path = null;
 
         System.out.printf("url: %s \t conPath: %s \t command: %s \n", url, conPath, command);
+
+
+        if (command.matches("/user")){
+            System.out.println("user 관련 요청");
+        }
+        else if (command.matches("/post")){
+            System.out.println("게시글 관련 요청");
+        }
+        else{
+            System.out.println("매칭된 패턴 없음");
+        }
 
         if (command.equals("/index.do")){
             System.out.println("index.do Matched");
@@ -119,7 +133,11 @@ public class FrontController extends HttpServlet {
 
         else if (command.equals("/post/list.do")){
             System.out.println("list.do Matched");
-            template_path = "template/post/list.jsp";
+            PostService service = new PostService();
+
+            ArrayList<PostDto> values = service.getList();
+            request.setAttribute("list", values);
+            template_path = "/template/post/list.jsp";
         }
 
         else if (command.equals("/post/write.do")){
@@ -131,5 +149,13 @@ public class FrontController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(template_path);
         dispatcher.forward(request, response);
 //        dispatcher.include(request, response);
+    }
+
+    private void actionPost(HttpServletRequest req, HttpServletResponse resp){
+
+    }
+
+    private void actionMember(HttpServletRequest req, HttpServletResponse resp){
+
     }
 }

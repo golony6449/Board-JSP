@@ -13,7 +13,7 @@ public class PostDao {
     public PostDao(){
         try{
             Context context = new InitialContext();
-            dataSource = (DataSource)context.lookup("java:comp/env/mariadb");
+            dataSource = (DataSource)context.lookup("java:comp/env/MariaDB");
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -40,7 +40,7 @@ public class PostDao {
         ArrayList<PostDto> result = new ArrayList<>();
         PostDto data = null;
 
-        String query = "SELECT * FROM mvc_borad";
+        String query = "SELECT * FROM mvc_board";
 
         Connection conn = null;
         Statement stmt = null;

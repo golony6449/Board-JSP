@@ -10,6 +10,7 @@ public class PostDto {
 
     public PostDto(int bId, String name, String title, String content, String date, int hit) {
         this.bId = bId;
+        this.name = name;
         this.title = title;
         this.content = content;
         this.date = date;
