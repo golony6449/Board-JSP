@@ -140,6 +140,17 @@ public class FrontController extends HttpServlet {
             template_path = "/template/post/list.jsp";
         }
 
+        else if (command.equals("/post/content.do")){
+            System.out.printf("content.do Matched id=%s\n", request.getParameter("id"));
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            PostService service = new PostService();
+            PostDto post = service.getPost(id);
+            request.setAttribute("post", post);
+            template_path = "/template/post/content.jsp";
+
+        }
+
         else if (command.equals("/post/write.do")){
 
         }

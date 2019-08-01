@@ -74,8 +74,41 @@ public class PostDao {
 
     public PostDto selectOne(int idx){
         PostDto result = null;
+        String query = "SELECT * FROM mvc_board WHERE bId=?";
 
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
+        try{
+            conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, idx);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                result = new PostDto(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getInt(6));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null){
+                        rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
         return result;
     }

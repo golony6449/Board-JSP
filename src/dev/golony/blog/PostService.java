@@ -30,4 +30,8 @@ public class PostService {
 
         return result;
     }
+
+    public PostDto getPost(int id){
+        return dao.selectOne(id);
+    }
 }

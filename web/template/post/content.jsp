@@ -1,4 +1,4 @@
-<%--
+<%@ page import="dev.golony.blog.PostDto" %><%--
   Created by IntelliJ IDEA.
   User: bb016
   Date: 2019-07-22
@@ -6,18 +6,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+   PostDto dto = (PostDto)request.getAttribute("post");
+%>
+
 <html>
 <head>
-    <title><%="제목"%></title>
+    <title><%=dto.getTitle()%></title>
 </head>
 <body>
-    <p><%="제목"%></p>
+    <p><%=dto.getTitle()%></p>
     <hr>
-    <p><%="작성자"%></p>
-    <p><%="작성일"%></p>
+    <p><%=dto.getName()%></p>
+    <p><%=dto.getDate()%></p>
     <hr>
-    <p><%="내용"%></p>
+    <p><%=dto.getContent()%></p>
     <hr>
+    <p>조회수: <%=dto.getHit()%></p>
     <a href="/template/post/list.jsp">목록</a>
     <a href="/template/post/post_form.jsp">수정</a>
 </body>
