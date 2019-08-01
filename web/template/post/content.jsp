@@ -23,7 +23,7 @@
     <p><%=dto.getContent()%></p>
     <hr>
     <p>조회수: <%=dto.getHit()%></p>
-    <a href="/template/post/list.jsp">목록</a>
-    <a href="/template/post/post_form.jsp">수정</a>
+    <a href="/post/list.do">목록</a>
+    <a href="/post/edit.do?=<%=dto.getbId()%>">수정</a>
 </body>
 </html>
