@@ -8,15 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%
+
+    %>
     <title><%="글 제목"%> 수정</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="/post/write.do" method="post">
+        <p>제목</p>
         <input type="text" name="title">
+        <p>내용</p>
         <input type="text" name="content">
+        <p></p>
         <input type="submit" value="저장">
         <%--첨부파일--%>
     </form>
-    <a href="/template/post/list.jsp">돌아가기</a>
+    <a href="/post/list.do">돌아가기</a>
 </body>
 </html>

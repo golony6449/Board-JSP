@@ -122,6 +122,38 @@ public class PostDao {
     }
 
     public boolean insert(PostDto data){
+        String query = "INSERT INTO mvc_board (bName, bTitle, bContent, bDate, bHit) VALUES (?, ?, ?, ?, 0)";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+
+        try {
+            conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, data.getName());
+            pstmt.setString(2, data.getTitle());
+            pstmt.setString(3, data.getContent());
+            pstmt.setString(4, data.getDate());
+
+            int result = pstmt.executeUpdate();
+            System.out.printf("쿼리 결과: %d\n", result);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
         return true;
     }
 

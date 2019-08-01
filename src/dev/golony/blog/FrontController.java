@@ -1,5 +1,7 @@
 package dev.golony.blog;
 
+import org.apache.axis.session.Session;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -152,7 +156,35 @@ public class FrontController extends HttpServlet {
         }
 
         else if (command.equals("/post/write.do")){
+            String method = request.getMethod();
+            System.out.printf("write.do Marched method: %s\n", method);
 
+            if (method.equals("GET")){
+                HttpSession sess = request.getSession();
+                if (sess.getAttribute("id") == null){
+                    response.sendRedirect("/login.do");
+                    return;
+                }
+
+                template_path = "/template/post/post_form.jsp";
+            }
+            else if (method.equals("POST")){
+                PostService service = new PostService();
+                HttpSession sess = request.getSession();
+
+                String title = (String) request.getParameter("title");
+                String content = (String) request.getParameter("content");
+                String name = (String) sess.getAttribute("id");
+//                String name = "temp";
+                SimpleDateFormat fomatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String date = fomatter.format(new Date());
+                System.out.println(date);
+
+                service.registerNewPost(name, title, content, date);
+
+                response.sendRedirect("/post/list.do");
+                return;
+            }
         }
 
         System.out.println("-------------------------------------------");

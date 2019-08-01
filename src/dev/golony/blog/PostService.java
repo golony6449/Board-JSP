@@ -34,4 +34,11 @@ public class PostService {
     public PostDto getPost(int id){
         return dao.selectOne(id);
     }
+
+    public boolean registerNewPost(String name, String title, String content, String date){
+        PostDto data = new PostDto(0, name, title, content, date, 0);
+        dao.insert(data);
+
+        return true;
+    }
 }
