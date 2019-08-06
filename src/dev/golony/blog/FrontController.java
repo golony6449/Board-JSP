@@ -199,9 +199,21 @@ public class FrontController extends HttpServlet {
 
                 // 세션을 이용한 수정 대상 관리
                 HttpSession sess = request.getSession();
-                sess.setAttribute("bId", data.getbId());
-
                 template_path = "/template/post/post_form.jsp";
+
+                String sessId = (String) sess.getAttribute("id");
+                String dtoName = data.getName();
+
+                System.out.printf("name: %s id: %s\n", sessId, dtoName);
+
+                // TODO: 왜 안되는 걸까?
+                if (sessId.equals(dtoName)){
+                    System.out.println("권한 오류 발생");
+                    request.setAttribute("msg", "권한이 없습니다.");
+                    template_path = "/template/common/error.jsp";
+                }
+
+                sess.setAttribute("bId", data.getbId());
             }
             else if (request.getMethod().equals("POST")){
                 System.out.println("Revised Post Arrived");

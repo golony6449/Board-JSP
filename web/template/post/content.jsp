@@ -8,6 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
    PostDto dto = (PostDto)request.getAttribute("post");
+   boolean auth = false;
+
+   if (session.getAttribute("id").equals(dto.getName())){
+       auth = true;
+   }
 %>
 
 <html>
@@ -25,10 +30,17 @@
     <p>조회수: <%=dto.getHit()%></p>
     <a href="/post/list.do">목록</a>
     <a href="/post/edit.do?id=<%=dto.getbId()%>">수정</a>
-
+<p><%=session.getAttribute("id")%></p>
+    <p><%=dto.getName()%></p>
+<%
+    if (auth){
+%>
     <form action="/post/delete.do" method="post">
         <input type="number" name="id" value="<%=dto.getbId()%>" hidden>
         <input type="submit" value="삭제">
     </form>
+<%
+    }
+%>
 </body>
 </html>
