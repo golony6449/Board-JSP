@@ -31,8 +31,15 @@ public class PostService {
         return result;
     }
 
-    public PostDto getPost(int id){
-        return dao.selectOne(id);
+    public PostDto getPost(int id, boolean increaseHit){
+        PostDto data = null;
+        data = dao.selectOne(id);
+
+        if (increaseHit){
+            data.setHit(data.getHit() + 1);
+            dao.update(data);
+        }
+        return data;
     }
 
     public boolean registerNewPost(String name, String title, String content, String date){

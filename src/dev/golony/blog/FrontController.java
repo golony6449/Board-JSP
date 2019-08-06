@@ -149,7 +149,7 @@ public class FrontController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
 
             PostService service = new PostService();
-            PostDto post = service.getPost(id);     // TODO: 조회수 증가
+            PostDto post = service.getPost(id, true);
             request.setAttribute("post", post);
             template_path = "/template/post/content.jsp";
 
@@ -194,7 +194,7 @@ public class FrontController extends HttpServlet {
                 PostService service = new PostService();
                 // TODO: 권한확인
                 int id = Integer.parseInt(request.getParameter("id"));
-                PostDto data = service.getPost(id);
+                PostDto data = service.getPost(id, false);
                 request.setAttribute("dto", data);
 
                 // 세션을 이용한 수정 대상 관리

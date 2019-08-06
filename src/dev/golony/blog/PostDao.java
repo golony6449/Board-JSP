@@ -158,7 +158,7 @@ public class PostDao {
     }
 
     public boolean update(PostDto data){
-        String query = "UPDATE mvc_board SET bTitle=?,  bContent=? WHERE bId=?";
+        String query = "UPDATE mvc_board SET bTitle=?, bContent=?, bHit=? WHERE bId=?";
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -167,7 +167,8 @@ public class PostDao {
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, data.getTitle());
             pstmt.setString(2, data.getContent());
-            pstmt.setInt(3, data.getbId());
+            pstmt.setInt(3, data.getHit());
+            pstmt.setInt(4, data.getbId());
 
             int result = pstmt.executeUpdate();
             System.out.printf("쿼리결과: %d\n", result);
