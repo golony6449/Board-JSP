@@ -41,4 +41,19 @@ public class PostService {
 
         return true;
     }
+
+    public boolean edit(int id, String name, String title, String content){
+        PostDto data = new PostDto(id, name, title, content, "", 0);
+
+        if (dao.update(data)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean delete(int id){
+        return dao.delete(id);
+    }
 }

@@ -8,6 +8,15 @@ public class PostDto {
     private String date;
     private int hit;
 
+    public PostDto(){
+        this.bId = 0;
+        this.name = "";
+        this.title = "";
+        this.content = "";
+        this.date = "";
+        this.hit = 0;
+    }
+
     public PostDto(int bId, String name, String title, String content, String date, int hit) {
         this.bId = bId;
         this.name = name;

@@ -149,7 +149,7 @@ public class FrontController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
 
             PostService service = new PostService();
-            PostDto post = service.getPost(id);
+            PostDto post = service.getPost(id);     // TODO: 조회수 증가
             request.setAttribute("post", post);
             template_path = "/template/post/content.jsp";
 
@@ -187,6 +187,57 @@ public class FrontController extends HttpServlet {
             }
         }
 
+        else if (command.equals("/post/edit.do")) {
+            if (request.getMethod().equals("GET")) {
+                System.out.println("Edit Request Occurred");
+
+                PostService service = new PostService();
+                // TODO: 권한확인
+                int id = Integer.parseInt(request.getParameter("id"));
+                PostDto data = service.getPost(id);
+                request.setAttribute("dto", data);
+
+                // 세션을 이용한 수정 대상 관리
+                HttpSession sess = request.getSession();
+                sess.setAttribute("bId", data.getbId());
+
+                template_path = "/template/post/post_form.jsp";
+            }
+            else if (request.getMethod().equals("POST")){
+                System.out.println("Revised Post Arrived");
+
+                PostService service = new PostService();
+                HttpSession sess = request.getSession();
+
+                String title = request.getParameter("title");
+                String content = request.getParameter("content");
+                int bId = Integer.parseInt(request.getParameter("bId"));
+
+                if (sess.getAttribute("id") == null){
+                    response.sendRedirect("/login.do");
+                    return;
+                }
+
+                service.edit(bId, (String) sess.getAttribute("id"),
+                        title, content);
+
+                response.sendRedirect(String.format("/post/content.do?id=%d", bId));
+                return;
+            }
+        }
+        else if (command.equals("/post/delete.do")){
+            if (request.getMethod().equals("POST")){
+               PostService service = new PostService();
+
+               int bId = Integer.parseInt(request.getParameter("id"));
+
+               service.delete(bId);
+               response.sendRedirect("/post/list.do");
+               return;
+            }
+        }
+
+        System.out.printf("template_path: %s\n", template_path);
         System.out.println("-------------------------------------------");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(template_path);
@@ -194,6 +245,7 @@ public class FrontController extends HttpServlet {
 //        dispatcher.include(request, response);
     }
 
+    // TODO: HTTP Method 분리
     private void actionPost(HttpServletRequest req, HttpServletResponse resp){
 
     }

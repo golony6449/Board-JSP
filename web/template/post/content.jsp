@@ -24,6 +24,11 @@
     <hr>
     <p>조회수: <%=dto.getHit()%></p>
     <a href="/post/list.do">목록</a>
-    <a href="/post/edit.do?=<%=dto.getbId()%>">수정</a>
+    <a href="/post/edit.do?id=<%=dto.getbId()%>">수정</a>
+
+    <form action="/post/delete.do" method="post">
+        <input type="number" name="id" value="<%=dto.getbId()%>" hidden>
+        <input type="submit" value="삭제">
+    </form>
 </body>
 </html>

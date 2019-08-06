@@ -46,7 +46,7 @@
         %>
             <tr>
                 <td><%=listObj.get(i).getbId()%></td>
-                <td><a href="/post/content.do?id=<%=i+1%>"><%=listObj.get(i).getTitle()%></a></td>
+                <td><a href="/post/content.do?id=<%=listObj.get(i).getbId()%>"><%=listObj.get(i).getTitle()%></a></td>
                 <td><%=listObj.get(i).getName()%></td>
                 <td><%=listObj.get(i).getDate()%></td>
                 <td><%=listObj.get(i).getHit()%></td>

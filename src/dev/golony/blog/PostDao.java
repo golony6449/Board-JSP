@@ -40,7 +40,7 @@ public class PostDao {
         ArrayList<PostDto> result = new ArrayList<>();
         PostDto data = null;
 
-        String query = "SELECT * FROM mvc_board ORDER BY bDate DESC";
+        String query = "SELECT * FROM mvc_board ORDER BY bId DESC";
 
         Connection conn = null;
         Statement stmt = null;
@@ -158,11 +158,43 @@ public class PostDao {
     }
 
     public boolean update(PostDto data){
+        String query = "UPDATE mvc_board SET bTitle=?,  bContent=? WHERE bId=?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try{
+            conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, data.getTitle());
+            pstmt.setString(2, data.getContent());
+            pstmt.setInt(3, data.getbId());
+
+            int result = pstmt.executeUpdate();
+            System.out.printf("쿼리결과: %d\n", result);
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
         return true;
     }
 
     public boolean delete(int idx){
+        String query = "DELETE FROM mvc_board WHERE bId=?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try{
+            conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, idx);
+
+            int result = pstmt.executeUpdate();
+
+            System.out.printf("쿼리결과: %d\n", result);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
 
         return true;
     }
