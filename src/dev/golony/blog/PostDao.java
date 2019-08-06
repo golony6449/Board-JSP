@@ -40,7 +40,7 @@ public class PostDao {
         ArrayList<PostDto> result = new ArrayList<>();
         PostDto data = null;
 
-        String query = "SELECT * FROM mvc_board";
+        String query = "SELECT * FROM mvc_board ORDER BY bDate DESC";
 
         Connection conn = null;
         Statement stmt = null;
