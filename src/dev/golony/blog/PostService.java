@@ -19,14 +19,19 @@ public class PostService {
         return result;
     }
 
+    public int getPostCount(){
+        ArrayList<PostDto> temp = this.getList();
+        return temp.size();
+    }
+
     public ArrayList<PostDto> getList(int page){
         ArrayList<PostDto> result = dao.selectAll();
 
-        if (page <= 0 || page*10 >= result.size()){
+        if (page < 0 || page*10 >= result.size()){
             return null;
         }
-
-        result = new ArrayList<>(result.subList(page*10 - 10, page*10));
+        int to = (page+1)*10;
+        result = new ArrayList<>(result.subList(to-10, to));
 
         return result;
     }

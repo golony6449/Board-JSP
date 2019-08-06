@@ -10,6 +10,8 @@
 
 <%
     ArrayList<PostDto> listObj = (ArrayList<PostDto>) request.getAttribute("list");
+    int length = (int) request.getAttribute("length");
+    int pageNum = Integer.parseInt(request.getParameter("page"));
 %>
 
 <html>
@@ -23,6 +25,10 @@
 
         td, th {
             border: 1px solid black;
+        }
+
+        .page {
+            display: inline;
         }
     </style>
 </head>
@@ -54,7 +60,19 @@
         <%
             }
         %>
-<%--TODO: 페이지 번호로 DB 정보 분할 출력--%>
     </table>
+
+    <% for (int i=0; i<length/10; i++){
+        if (i != pageNum){
+    %>
+        <a class="page" href="<%=String.format("/post/list.do?page=%d", i)%>"><%=i+1%></a>
+    <%
+            } else {
+    %>
+            <p class="page"><%=i+1%></p>
+    <%
+            }
+    }
+    %>
 </body>
 </html>

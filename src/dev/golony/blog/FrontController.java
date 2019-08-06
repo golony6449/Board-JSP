@@ -138,8 +138,16 @@ public class FrontController extends HttpServlet {
         else if (command.equals("/post/list.do")){
             System.out.println("list.do Matched");
             PostService service = new PostService();
+            int pageNum = 0;
+            int length = service.getPostCount();
+            try {
+                pageNum = Integer.parseInt(request.getParameter("page"));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
 
-            ArrayList<PostDto> values = service.getList();
+            ArrayList<PostDto> values = service.getList(pageNum);
+            request.setAttribute("length", length);
             request.setAttribute("list", values);
             template_path = "/template/post/list.jsp";
         }
